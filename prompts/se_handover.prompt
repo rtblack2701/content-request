@@ -1,0 +1,34 @@
+You're generating an internal sales engineering handover document for a new product feature.
+
+Use the provided structured data to create a consistent document format with the following sections:
+
+Heading: SE {title} Handover
+
+Feature Description:
+{description}
+
+Real-world Use Case:
+{use_case}
+
+Real-life Scenario Comparison:
+Generate a hypothetical analogy or relatable explanation for {title}, ideally using a well-known developer principle or analogy.
+
+Key Benefits:
+{benefits}
+
+How to Enable the Feature:
+{title} is currently behind the {enablement} feature flag.
+To enable it, add a request in the #slack-channel to activate it on your account.
+
+Known Limitations or Gotchas:
+{known_limitations}
+
+Additional Features:
+{additional_features}
+
+Demos:
+{demo_video}
+
+Additional Resources:
+- Blog: (link TBD)
+- Docs: (link TBD)
