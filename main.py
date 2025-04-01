@@ -1,11 +1,17 @@
-# main.py
+import os
 import typer
 from fetch_responses import latest
 from content.blog.seo_sniper import generate_seo_data
 from content.blog.generate_blog import generate_blog
 from content.announcement.generate_announcement import generate_announcement
+from content.se_handover.generate_se_handover import generate_se_handover
 
 app = typer.Typer(help="Feature Content Generator CLI")
+
+@app.command()
+def snipe(keyword: str):
+    "Snipes the SEO structure for a given keyword."
+    generate_seo_data(keyword)
 
 @app.command()
 def fetch():
@@ -19,7 +25,7 @@ def fetch():
 
 @app.command()
 def blog():
-    "Generates a blog post using the feature title as the topic."
+    "Generates a blog post using the form response title as the keyword."
     if not latest:
         typer.echo("❌ No form responses found.")
         raise typer.Exit()
@@ -34,7 +40,6 @@ def blog():
         typer.echo("❌ Feature title not found in form response.")
         raise typer.Exit()
 
-    from content.blog.seo_sniper import generate_seo_data
     success = generate_seo_data(keyword)
     if not success:
         typer.echo("❌ Blog generation skipped due to missing or invalid SEO structure.")
@@ -45,19 +50,38 @@ def blog():
 
 @app.command()
 def announcement():
-    "Generates a product announcement for social and internal sharing."
+    "Generates a short internal and social-ready announcement post."
     if not latest:
         typer.echo("❌ No form responses found.")
         raise typer.Exit()
+
+    typer.echo("✅ Latest Form Response:")
+    for key, value in latest.items():
+        typer.echo(f"{key}: {value}")
 
     typer.echo("✅ Generating feature announcement...")
     generate_announcement()
 
 @app.command()
+def handover():
+    "Generates an SE handover markdown doc from the form response."
+    if not latest:
+        typer.echo("❌ No form responses found.")
+        raise typer.Exit()
+
+    typer.echo("✅ Latest Form Response:")
+    for key, value in latest.items():
+        typer.echo(f"{key}: {value}")
+
+    typer.echo("✅ Generating SE Handover doc...")
+    generate_se_handover()
+
+@app.command()
 def all():
-    "Runs blog and announcement generation using form-derived data."
+    "Runs fetch, SEO snipe, blog, announcement, and handover generation."
     blog()
     announcement()
+    handover()
 
 if __name__ == "__main__":
     app()
