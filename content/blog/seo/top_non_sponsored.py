@@ -1,3 +1,6 @@
+import os
+import json
+import time
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
@@ -6,24 +9,37 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 from content.blog.seo.top_non_sponsored_seo_analysis import analyze_webpage
-import os
 
-
-def get_top_non_sponsored_article(keyword):
+def get_top_non_sponsored_article(keyword, feature_title):
     chrome_options = Options()
     chrome_options.add_argument("--incognito")
+    chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+    chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    chrome_options.add_experimental_option("useAutomationExtension", False)
 
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
-    driver.get("https://www.google.com")
 
     try:
+        driver.get("https://www.google.com")
+
+        # ✅ Dismiss cookie popup if present
+        try:
+            consent_button = WebDriverWait(driver, 5).until(
+                EC.element_to_be_clickable((By.XPATH, "//button/div[contains(text(),'Accept all')]"))
+            )
+            consent_button.click()
+            print("✅ Dismissed cookie popup")
+        except Exception:
+            print("ℹ️ No consent popup shown")
+
+        # 🔍 Locate and interact with search box
         search_box = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.NAME, "q"))
         )
-        driver.execute_script("arguments[0].scrollIntoView(true);", search_box)
-        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, "q")))
-        driver.execute_script("arguments[0].value = arguments[1];", search_box, keyword)
-        driver.execute_script("arguments[0].form.submit();", search_box)
+        driver.execute_script("arguments[0].click();", search_box)
+        search_box.clear()
+        search_box.send_keys(keyword)
+        search_box.submit()
 
         WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.ID, "search"))
@@ -59,14 +75,25 @@ def get_top_non_sponsored_article(keyword):
                         ] + [f"  {h['tag'].upper()}: {h['text']}" for h in headings]
 
                         log_content = "\n".join(log_lines)
-
-                        # Print to terminal
                         print("\n" + log_content)
 
-                        # Write to seo_sniping.log (overwrite each run)
+                        # Save to log file
                         log_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../seo_sniping.log"))
                         with open(log_path, "w") as log_file:
                             log_file.write(log_content)
+
+                        # Save to JSON
+                        seo_data_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../seo_data.json"))
+                        with open(seo_data_path, "w") as f:
+                            json.dump({
+                                "keyword": keyword,
+                                "seo_headings": "\n".join([f"{h['tag'].upper()}: {h['text']}" for h in headings]),
+                                "title": feature_title,
+                                "company_name": "Unleash",
+                                "trial_link": "https://www.getunleash.io/start",
+                                "docs_link": "https://docs.getunleash.io",
+                                "community_link": "https://github.com/Unleash"
+                            }, f, indent=2)
 
                         driver.quit()
                         return title, url, headings, word_count

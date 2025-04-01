@@ -1,5 +1,6 @@
 import os
 import typer
+import datetime
 from fetch_responses import latest
 from content.blog.seo_sniper import generate_seo_data
 from content.blog.generate_blog import generate_blog
@@ -7,6 +8,20 @@ from content.announcement.generate_announcement import generate_announcement
 from content.se_handover.generate_se_handover import generate_se_handover
 
 app = typer.Typer(help="Feature Content Generator CLI")
+
+def log_form_response():
+    if not latest:
+        return None
+    log_dir = os.path.join(os.path.dirname(__file__), "logs")
+    os.makedirs(log_dir, exist_ok=True)
+    log_path = os.path.join(log_dir, "latest_form_response.log")
+
+    with open(log_path, "w") as f:
+        f.write(f"✅ Latest Form Response - Logged at {datetime.datetime.now()}\n\n")
+        for key, value in latest.items():
+            f.write(f"{key}: {value}\n")
+
+    return log_path
 
 @app.command()
 def snipe(keyword: str):
@@ -19,9 +34,8 @@ def fetch():
     if not latest:
         typer.echo("❌ No form responses found.")
     else:
-        typer.echo("✅ Latest Form Response:")
-        for key, value in latest.items():
-            typer.echo(f"{key}: {value}")
+        path = log_form_response()
+        typer.echo(f"✅ Form response logged to: {path}")
 
 @app.command()
 def blog():
@@ -30,17 +44,16 @@ def blog():
         typer.echo("❌ No form responses found.")
         raise typer.Exit()
 
-    typer.echo("✅ Latest Form Response:")
-    for key, value in latest.items():
-        typer.echo(f"{key}: {value}")
-
+    path = log_form_response()
+    typer.echo(f"✅ Form response logged to: {path}")
     typer.echo("\n--- Sniping SEO structure based on feature title ---")
+
     keyword = latest.get("Feature title")
     if not keyword:
         typer.echo("❌ Feature title not found in form response.")
         raise typer.Exit()
 
-    success = generate_seo_data(keyword)
+    success = generate_seo_data(keyword, latest["Feature title"])
     if not success:
         typer.echo("❌ Blog generation skipped due to missing or invalid SEO structure.")
         raise typer.Exit()
@@ -55,10 +68,8 @@ def announcement():
         typer.echo("❌ No form responses found.")
         raise typer.Exit()
 
-    typer.echo("✅ Latest Form Response:")
-    for key, value in latest.items():
-        typer.echo(f"{key}: {value}")
-
+    path = log_form_response()
+    typer.echo(f"✅ Form response logged to: {path}")
     typer.echo("✅ Generating feature announcement...")
     generate_announcement()
 
@@ -69,10 +80,8 @@ def handover():
         typer.echo("❌ No form responses found.")
         raise typer.Exit()
 
-    typer.echo("✅ Latest Form Response:")
-    for key, value in latest.items():
-        typer.echo(f"{key}: {value}")
-
+    path = log_form_response()
+    typer.echo(f"✅ Form response logged to: {path}")
     typer.echo("✅ Generating SE Handover doc...")
     generate_se_handover()
 
