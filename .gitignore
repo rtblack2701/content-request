@@ -172,3 +172,9 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Output folder
+output/
+
+# JSON files
+*.json

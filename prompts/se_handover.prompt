@@ -17,7 +17,7 @@ Key Benefits:
 {benefits}
 
 How to Enable the Feature:
-{title} is currently behind the {enablement} feature flag.
+{title} is currently behind the `{enablement}` feature flag.
 To enable it, add a request in the #slack-channel to activate it on your account.
 
 Known Limitations or Gotchas:

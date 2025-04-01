@@ -24,7 +24,7 @@ def generate_se_handover():
     description = get_field("Feature description", "Feature description")
     use_case = get_field("Real-world use case", "Real-world use case")
     benefits = get_field("Key benefits", "Key benefits")
-    enablement = get_field("How to enable", "Enablement instructions")
+    enablement = get_field("Feature flag", "Enablement instructions")
     known_limitations = get_field("Known limitations or gotchas", "Known limitations or gotchas")
     additional_features = get_field("Additional features", "Additional features")
     demo_video = get_field("Demo video", "Demo video")
