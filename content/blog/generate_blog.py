@@ -27,13 +27,11 @@ def generate_blog():
 
     prompt = template.format(
         keyword=seo_data["keyword"],
-        seo_headings=seo_data["seo_headings"],
+        seo_outline=seo_data["seo_headings"],
         title=latest["Feature title"],
         description=latest["Feature description"],
         benefits=latest["Key benefits"],
-        enablement=latest["How to enable"],
         use_case=latest["Real-world use case"],
-        competitor_link=latest.get("Competitor resources", "N/A"),
         company_name=seo_data["company_name"],
         trial_link=seo_data["trial_link"],
         docs_link=seo_data["docs_link"],

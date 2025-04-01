@@ -1,21 +1,23 @@
 Blog Title: {title}
 
-Write a technical blog post aimed at software engineers and DevOps practitioners. 
+Write a technical blog post aimed at software engineers and DevOps practitioners.  
 The topic of the blog is: "{title}" — this is the core theme, and should be central throughout the piece.
 
-Use the following structure:
-1. **Introduction** – Introduce the concept of {title} and why it matters.
+Use the heading structure of this high-ranking blog as a loose guide to shape your sections, but always focus on writing about "{title}".
+
+Structure your blog using the following outline:
+
+1. **Introduction** – Introduce the concept of "{title}" and why it matters.
 2. **What is {title}?** – Define and explain the concept clearly.
 3. **Key Benefits** – Use these points to inform this section: {benefits}
-4. **How to Enable It** – Describe how it can be enabled in practice: {enablement}
-5. **Real-world Use Case** – Describe this example scenario: {use_case}
-6. **Competitive Context** – Optionally reference a competitor's article: {competitor_link}, but maintain our tone.
-7. **How {company_name} Supports This** – Explain how {company_name} offers value in this context.
-8. **Call to Action** – Direct readers to:
+4. **Real-world Use Case** – Describe this example scenario: {use_case}
+5. **How {company_name} Supports This** – Explain how {company_name} offers value in this context.
+6. **Call to Action** – Direct readers to:
    - Trial: {trial_link}
    - Docs: {docs_link}
    - Community: {community_link}
 
-Incorporate the following keywords naturally for SEO support: {seo_headings}
+Use the following SEO-derived headings as inspiration for section ideas or language. Do **not** use them verbatim or force them into the post:
+{seo_outline}
 
-Write in a professional, insightful tone. The goal is to educate, not sell.
+Maintain a professional, insightful tone. The goal is to educate, not sell.
