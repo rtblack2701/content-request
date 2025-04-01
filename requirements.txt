@@ -1,0 +1,9 @@
+openai
+typer[all]
+gspread
+oauth2client
+python-dotenv
+beautifulsoup4
+requests
+selenium
+webdriver-manager
