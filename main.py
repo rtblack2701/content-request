@@ -8,6 +8,7 @@ from content.announcement.generate_announcement import generate_announcement
 from content.se_handover.generate_se_handover import generate_se_handover
 from content.newsletter.generate_newsletter import generate_newsletter
 from content.docs.generate_docs import generate_docs
+from content.release_notes.generate_release_notes import generate_release_notes
 
 app = typer.Typer(help="Feature Content Generator CLI")
 
@@ -100,6 +101,12 @@ def docs():
     generate_docs()
 
 @app.command()
+def release_notes():
+    "Generates release notes from the latest Google Form entry."
+    typer.echo("✅ Generating release notes...")
+    generate_release_notes()
+
+@app.command()
 def all():
     "Runs fetch, SEO snipe, blog, announcement, and handover generation."
     blog()
@@ -107,6 +114,7 @@ def all():
     handover()
     newsletter()
     docs()
+    release_notes() #type automatically swaps _ with -, so run with python miain.py release-notes
 
 if __name__ == "__main__":
     app()

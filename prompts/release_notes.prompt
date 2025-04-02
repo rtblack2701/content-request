@@ -1,0 +1,20 @@
+You're writing a developer-facing release note entry for a new feature in Unleash.
+The style should follow this format:
+---
+
+### [New Feature]: {title} ({version})
+→ [Docs](https://docs.getunleash.io) | [Tutorial](link TBD) | [Video](link TBD)
+
+Short one-line summary of what this feature does.
+
+**Use Cases**  
+{use_case}
+
+**How it works**  
+{description}
+
+Optionally include a bullet list or paragraph of key points on how users might interact with this feature (e.g., API usage, UI flow, or SDK integration tips). Mention any environment variables, settings, or expected behaviors.
+
+**Gotchas**  
+{gotchas}  
+If applicable, suggest workarounds or reference relevant documentation.
