@@ -119,9 +119,9 @@ GOOGLE_SHEET_ID=your-google-sheet-id
 GOOGLE_CREDENTIALS_PATH=./path/to/credentials.json
 ```
 
-- OPENAI_API_KEY: Your key from OpenAI
-- GOOGLE_SHEET_ID: Found in the URL of your linked sheet: https://docs.google.com/spreadsheets/d/<THIS_ID>/edit#gid=0
-- GOOGLE_CREDENTIALS_PATH: Path to your downloaded Google service account credentials file.
+- **OPENAI_API_KEY:** Your key from OpenAI
+- **GOOGLE_SHEET_ID:** Found in the URL of your linked sheet: https://docs.google.com/spreadsheets/d/<THIS_ID>/edit#gid=0
+- **GOOGLE_CREDENTIALS_PATH:** Path to your downloaded Google service account credentials file.
 
 ---
 
@@ -134,11 +134,52 @@ python main.py fetch           # See the latest form submission
 python main.py blog            # Generate a technical blog
 python main.py announcement    # Create an internal/social announcement
 python main.py handover        # Generate an SE handover doc
+python main.py release-notes   # Generate feature release notes
+python main.py docs            # Generate technical documentation
 python main.py all             # Run all generators
 ```
-Optional:
-```bash
-python main.py snipe "your keyword"
-```
+⸻
 
-This lets you preview SEO heading structures manually.
+🧭 Strategic Content Cadence & GTM Alignment
+
+This project isn’t just about content automation — it’s designed to accelerate collaboration across Product, Engineering, Marketing, and Docs.
+
+🔍 Why this approach?
+
+As a Developer Relations Engineer, I found myself chasing down details post-development, often having to produce documentation at the last minute. Coordination across content types was reactive and inconsistent, despite interest from Product Marketing and Comms in creating a broader narrative.
+
+By introducing a simple, QA/UAT trigger point via a Google Form, I created a single source of feature truth early in the dev cycle — and used that to automatically scaffold multiple content types (docs, announcements, blogs, etc.).
+
+This reduces bottlenecks, creates a consistent voice, and ensures content production begins before the release deadline hits.
+
+⸻
+
+## 🧭 Strategic Content Cadence & GTM Alignment
+
+This project isn’t just about content automation — it’s designed to **accelerate collaboration** across Product, Engineering, Marketing, and Docs.
+
+### 🔍 Why this approach?
+
+Many content creators find themselves chasing down details post-development, often having to produce documentation at the last minute. Coordination across content types was reactive and inconsistent, despite interest from Product Marketing and Comms in creating a broader narrative.
+
+By introducing a simple, **QA/UAT trigger point** via a Google Form, this created a single source of feature truth early in the dev cycle — and used that to automatically scaffold multiple content types (docs, announcements, blogs, etc.).
+
+This reduces bottlenecks, creates a consistent voice, and ensures content production begins before the release deadline hits.
+
+---
+
+### 🪄 Prioritized Content Generation Flow
+
+Not all content needs to be released at the same time. Here’s a suggested **release sequence** for each content type:
+
+| Content Type         | Suggested Timing           | Purpose                                                   |
+|----------------------|----------------------------|-----------------------------------------------------------|
+| 📘 Technical Docs     | 1–2 weeks **before GA**     | Gives early adopters a path forward, adds SEO foundation. |
+| 📄 SE Handover        | 1 week **before GA**        | Enables internal teams to prepare demos and responses.    |
+| 📣 Internal Post      | On feature **enablement**   | Signals readiness and promotes usage internally.          |
+| 🧾 Release Notes      | **Alongside GA**            | Canonical record of what shipped and why.                 |
+| 📰 Newsletter Snippet | Monthly or **on milestone** | Keeps wider audience updated in a digestible format.      |
+| 📝 Blog Post          | 1–2 weeks **after GA**      | Focused on storytelling and wider awareness.              |
+
+
+This allows Marketing and Docs to **collaborate on refinement** rather than scramble to create from scratch.

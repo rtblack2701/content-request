@@ -6,6 +6,7 @@ from openai import OpenAI
 
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+COMPANY_NAME = os.getenv("COMPANY_NAME")
 
 def generate_announcement():
     if not latest:
@@ -32,6 +33,8 @@ def generate_announcement():
     # 🧩 Optional version fallback
     version = latest.get("Release version", "")
     version_line = f" in version {version}" if version else ""
+
+    template = template.replace("{COMPANY_NAME}", COMPANY_NAME or "YourCompany")
 
     # 🧠 Prepare the prompt
     prompt = template.format(

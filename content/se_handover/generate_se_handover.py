@@ -27,6 +27,7 @@ def generate_se_handover():
     enablement = get_field("Feature flag", "Enablement instructions")
     known_limitations = get_field("Known limitations or gotchas", "Known limitations or gotchas")
     additional_features = get_field("Additional features", "Additional features")
+    competitors = get_field("Competitor resources", "Competitor resources")
     demo_video = get_field("Demo video", "Demo video")
 
     # Ask OpenAI to generate the scenario using the prompt
@@ -40,6 +41,7 @@ def generate_se_handover():
             enablement=enablement,
             known_limitations=known_limitations,
             additional_features=additional_features,
+            competitors=competitors,
             demo_video=demo_video,
         )
 

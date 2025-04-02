@@ -1,4 +1,4 @@
-Write a short, exciting announcement post for the following product feature.
+Write a short, exciting announcement post for the following product feature.  
 This should work for both internal communications and social media.
 
 Feature title: {title}  
@@ -6,21 +6,24 @@ Key benefits: {benefits}
 Release version (if applicable): {version_line}
 
 Your goal:
-- Use an enthusiastic tone that energizes both technical and non-technical audiences.
-- Include 2–3 bullet points showing what the feature enables.
-- End with a strong sentence about availability or next steps.
-- Keep it under 100 words.
-- Include hashtags like #FeatureLaunch and one or two related to the feature.
+- Use a warm, enthusiastic tone that energizes both technical and non-technical audiences.
+- Open strong, using the tone type guidance below to frame the feature.
+- Include a short paragraph (2–3 sentences) explaining the value and purpose of the feature.
+- Follow with 2–3 bullet points showing what it enables or improves.
+- End with a bold call to action, inviting readers to try it, explore docs, or read the blog.
+- Keep it under 150–200 words.
+- Include hashtags like #FeatureLaunch and one or two relevant to the feature.
 
 Determine the announcement type:
-- Is it a brand-new capability we’ve launched?
+- Is it a brand-new capability {COMPANY_NAME} has launched?
 - Is it support for an external tool or standard (e.g. OpenTofu)?
-- Is it a best practice or implementation pattern we're improving?
+- Is it a best practice or implementation pattern {COMPANY_NAME} is making easier?
 
-Use the tone type below to guide your phrasing:
+Use the tone type below to guide the opening sentence:
+
 Tone type: {tone_type}
 
 Tone mapping:
-- **integration** → Start with: "Unleash now supports {title}..."
-- **feature_flag** or **new_capability** → Start with: "Now available: {title}..."
-- **best_practice** → Frame it as: "It’s now easier than ever to adopt {title} with Unleash..."
+- **integration** → Start with: "{COMPANY_NAME} now supports {title}..."
+- **feature_flag** or **new_capability** → Start with: "Now available: {title} from {COMPANY_NAME}..."
+- **best_practice** → Frame it as: "It’s now easier than ever to adopt {title} with {COMPANY_NAME}..."
