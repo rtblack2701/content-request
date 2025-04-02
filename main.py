@@ -7,6 +7,7 @@ from content.blog.generate_blog import generate_blog
 from content.announcement.generate_announcement import generate_announcement
 from content.se_handover.generate_se_handover import generate_se_handover
 from content.newsletter.generate_newsletter import generate_newsletter
+from content.docs.generate_docs import generate_docs
 
 app = typer.Typer(help="Feature Content Generator CLI")
 
@@ -93,12 +94,19 @@ def newsletter():
     generate_newsletter()
 
 @app.command()
+def docs():
+    "Generates technical documentation from the latest Google Form entry."
+    typer.echo("✅ Generating technical documentation...")
+    generate_docs()
+
+@app.command()
 def all():
     "Runs fetch, SEO snipe, blog, announcement, and handover generation."
     blog()
     announcement()
     handover()
     newsletter()
+    docs()
 
 if __name__ == "__main__":
     app()
