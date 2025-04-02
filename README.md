@@ -1,121 +1,144 @@
-# Feature Content Generator
+# ✨ Feature Content Generator
 
-This repository automates the creation of several content deliverables from a single Google Form submission: [Feature Content Form](https://forms.gle/ngNvbon2XQPjmbUV8).
+This project automates the generation of multiple types of product content from a single Google Form submission. Designed for teams shipping features regularly, it reduces the manual effort involved in creating internal documentation, marketing copy, and more — by using the OpenAI and Google APIs together.
 
-The goal is to reduce manual overhead and ensure consistent messaging across documentation, marketing, and internal teams by centralizing all relevant feature information in one place and using OpenAI to intelligently generate:
+## 💡 Why this exists
 
-- Technical Docs
-- Blog Posts
-- Internal & Social Media Announcements
-- Sales Engineering Handover Documents
-- Release Notes
-- Newsletter Highlights
+Shipping a feature doesn’t stop at writing code. Every release deserves:
 
----
+- Clear documentation
+- A concise internal handover
+- A public announcement
+- A compelling blog post
+- A newsletter mention
+- Accurate release notes
 
-## 📄 How It Works
+But coordinating these across docs, marketing, sales engineering, and product can be slow and inconsistent. This tool automates the content scaffolding so you can focus on refinement and coordination, not writing from scratch.
 
-1. **Feature Info Collection**
-   - Engineers or PMs fill out the [Feature Content Form](https://forms.gle/ngNvbon2XQPjmbUV8).
-   - The form collects:
-     - Feature title & description
-     - Key benefits
-     - How to enable the feature
-     - Release version
-     - Real-world use case
-     - Known limitations or gotchas
-     - Demo video link (optional)
-     - Competitor resources (optional)
+## 🧩 How it works
 
-2. **Data Parsing**
-   - Responses are pulled from the Google Sheet via the Sheets API.
-   - Latest response is cached and used for content generation.
-
-3. **Prompt Definition**
-   - Structured templates for each content type (stored in `/prompts`) are dynamically filled using the form data.
-   - Each content type has a tailored prompt designed for the OpenAI Chat API.
-
-4. **Content Generation**
-   - Content is generated using the GPT-4 API.
-   - SEO support for blog posts includes scraping the top non-sponsored Google result related to the feature title to inform structure.
-
-5. **Output**
-   - All outputs are written to the `/output` directory in markdown format.
+1. **Engineers submit a Google Form** describing the feature at the point it reaches UAT or QA.
+2. The form data is written to a linked Google Sheet.
+3. This CLI app fetches the latest response and uses OpenAI to generate various types of content:
+   - A blog (SEO-optimized)
+   - Internal + social-ready announcements
+   - Sales engineering handover documentation
+   - (Coming soon) Technical docs, Release notes, and Newsletter snippets
 
 ---
 
-## 📖 Generated Content Types
+## 📙 Blog Post
 
-### ✍️ Technical Docs *(Coming Soon)*
-Documentation-style content focused on how the feature works, how to enable/configure it, and what value it provides.
+Provides a narrative overview of the feature, its benefits, and real-world applications.  
+💡 **SEO Sniping:**  
+Before generating the blog, the app runs a live search on Google using the feature title. It:
 
-### 📙 Blog Post
-The blog post offers a developer-focused narrative about the feature: what it is, why it matters, and how it’s used in real-world scenarios. The goal is to produce an insightful, educational blog that can stand on its own while supporting the broader content strategy.
+- Scrapes the top-ranking non-sponsored article.
+- Parses the heading structure and word count.
+- Uses this structure to inform (but not dictate) the blog layout.
 
-What makes this blog special is its SEO-informed structure, which is automatically generated through a process we call SEO sniping:
-- The app takes the feature title submitted through the Google Form and searches for the top non-sponsored result on Google.
-- It uses Selenium to open a Chrome browser (or undetected_chromedriver in CAPTCHA-safe environments), searches for the keyword, and collects the first organic article result.
-- The content of that article is scraped and passed through an internal analyzer that extracts:
-- HTML headings and their structure (e.g., H1, H2, H3),
-- Article word count,
-- SEO-relevant terminology.
-- These headings are not used to dictate the blog content but rather to guide the structure — ensuring the resulting blog is compatible with what people are already searching for.
-- The actual blog topic is always rooted in the feature title, not the scraped article — this ensures consistency and relevance to the product.
-
-This careful blend of SEO alignment and product relevance makes each blog more discoverable while remaining genuinely useful to developers and stakeholders.
-
-### 💬 Internal / Social Announcement
-A short, enthusiastic summary of the feature designed for internal Slack announcements or external social media posts.
-
-### 👨‍💼 Sales Engineering Handover
-Detailed, practical guide for SEs to understand and present the feature:
-- Feature explanation
-- Real-world example
-- Analogy or relatable developer principle
-- Benefits, limitations, enablement steps
-- Video guides or screen recordings
-
-### 🔄 Release Notes *(Coming Soon)*
-Concise, clear notes describing what was released, why it matters, and how users can benefit.
-
-### 🌐 Newsletter Highlight *(Coming Soon)*
-A 2-3 sentence blurb highlighting the feature, ideal for embedding in product update emails.
+If the article has too few headings or is irrelevant (e.g. product docs, pricing pages), the blog generation is skipped automatically to avoid low-quality results.
 
 ---
 
-## ⚙️ CLI Commands
+## 📣 Internal + Social Media Announcement
 
-Run any content type generator with:
+Generates a short and exciting launch post suitable for both Slack and social media.
+
+- Identifies tone based on keywords (e.g. `Now supported`, `New feature`, `Best practice spotlight`).
+- Includes emojis, hashtags, and bullet point value props.
+- Consistently under 100 words.
+
+---
+
+## 📄 SE Handover Document
+
+Creates a markdown document to help Sales Engineering teams understand and explain the feature.
+
+Sections include:
+
+- Feature description
+- Real-world use case
+- Real-life scenario comparison (AI-generated)
+- Key benefits
+- Enablement instructions
+- Known limitations
+- Demos and additional resources (with placeholders if not provided)
+
+---
+
+## 📦 Coming Soon
+
+- 📘 Technical documentation (like [Unleash Quickstart](https://docs.getunleash.io/quickstart))
+- 📨 Newsletter snippet
+- 📋 Release notes
+
+---
+
+## 🚀 Getting Started
+
+Follow these steps to set up your environment, connect to the Google Form, and start generating content automatically.
+
+### 1. ✅ Install dependencies
+
+Create a virtual environment (recommended) and install the required packages:
+
 ```bash
-python main.py blog
-python main.py announcement
-python main.py handover
+python -m venv .venv
+source .venv/bin/activate  # or `.venv\Scripts\activate` on Windows
+pip install -r requirements.txt
 ```
 
-Run everything:
-```bash
-python main.py all
+### 2. 🧾 Connect your Google Form and Sheet
+
+Use this sample form: [Feature Content Form](https://forms.gle/ngNvbon2XQPjmbUV8)  
+Or create your own. Be sure to link the form to a Google Sheet.
+
+#### Required fields in the form:
+
+| Field name (as it appears in the sheet)     | Description                                           |
+|---------------------------------------------|-------------------------------------------------------|
+| Feature title                               | The main topic of the content                        |
+| Feature description                         | Overview of the feature                              |
+| Key benefits                                | Comma-separated list of advantages                   |
+| How to enable                               | Internal instructions on feature activation          |
+| Real-world use case                         | Practical example of the feature in action           |
+| Known limitations or gotchas (optional)     | Any caveats or known issues                          |
+| Demo video (optional)                       | Link to a demo video                                 |
+| Competitor resources (optional)             | Link to a relevant comparison or competitor article  |
+
+---
+
+### 3. 🔐 Set up your `.env` file
+
+Create a `.env` file in the root directory of the project with the following contents:
+
+```env
+OPENAI_API_KEY=your-openai-api-key
+GOOGLE_SHEET_ID=your-google-sheet-id
+GOOGLE_CREDENTIALS_PATH=./path/to/credentials.json
 ```
 
----
-
-## 🌐 SEO Sniping
-Blog posts use a scraping script that finds the top non-sponsored Google result for the feature title and analyzes its heading structure for SEO-informed generation.
-
----
-
-## 🚀 Roadmap
-- [ ] Interactive CLI menu for prompt editing before generation.
-- [ ] Support for scheduling generation from new form submissions.
-- [ ] More content types: Docs, Release Notes, Newsletters.
-- [ ] Built-in Confluence/GitHub/Slack publisher.
+- OPENAI_API_KEY: Your key from OpenAI
+- GOOGLE_SHEET_ID: Found in the URL of your linked sheet: https://docs.google.com/spreadsheets/d/<THIS_ID>/edit#gid=0
+- GOOGLE_CREDENTIALS_PATH: Path to your downloaded Google service account credentials file.
 
 ---
 
-## 🚪 Contributing
-Pull requests are welcome! This project is internal but aims to become reusable for other teams and content workflows.
+### 4. ✅ Run the CLI
 
----
+Once everything is set up, you can use the CLI to generate different types of content from the most recent form response:
 
-## 👋 Made by DevRel, for everyone who hates duplicating content.
+```bash
+python main.py fetch           # See the latest form submission
+python main.py blog            # Generate a technical blog
+python main.py announcement    # Create an internal/social announcement
+python main.py handover        # Generate an SE handover doc
+python main.py all             # Run all generators
+```
+Optional:
+```bash
+python main.py snipe "your keyword"
+```
 
+This lets you preview SEO heading structures manually.

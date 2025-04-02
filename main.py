@@ -6,6 +6,7 @@ from content.blog.seo_sniper import generate_seo_data
 from content.blog.generate_blog import generate_blog
 from content.announcement.generate_announcement import generate_announcement
 from content.se_handover.generate_se_handover import generate_se_handover
+from content.newsletter.generate_newsletter import generate_newsletter
 
 app = typer.Typer(help="Feature Content Generator CLI")
 
@@ -86,11 +87,18 @@ def handover():
     generate_se_handover()
 
 @app.command()
+def newsletter():
+    "Generates a newsletter with all Google Form submissions not yet used."
+    typer.echo("✅ Generating newsletter...")
+    generate_newsletter()
+
+@app.command()
 def all():
     "Runs fetch, SEO snipe, blog, announcement, and handover generation."
     blog()
     announcement()
     handover()
+    newsletter()
 
 if __name__ == "__main__":
     app()

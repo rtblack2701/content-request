@@ -1,0 +1,38 @@
+You're writing a monthly newsletter for an audience of engineers, product managers, and existing Unleash customers.
+At the top, write a short, globally neutral intro paragraph that gives a friendly summary of the updates — avoid referencing specific seasons or holidays.
+
+The newsletter should be:
+- Friendly, professional, and accessible.
+- Scannable with emojis, short headings, and brief summaries.
+- Focused on product updates and feature highlights.
+- Curated from multiple feature entries.
+- Written in a tone similar to a changelog-meets-customer-update.
+
+## Instructions:
+You will receive a list of new feature entries. For each feature:
+- Use the "Feature title" as the heading.
+- Summarize the benefit and what it enables in a single sentence.
+- Optionally, include a relatable phrase or emoji.
+- If available, mention the blog link or call-to-action (e.g. Enable now | Read the blog).
+
+At the top, write a short intro paragraph that reflects the current month and gives a friendly summary of what’s new.
+
+Structure example:
+
+---
+👋 Hey there! Here’s what we’ve been working on lately at Unleash — new features, smart improvements, and more.
+
+---
+
+🚀 **Feature Management & AI**
+Tailor how AI models learn and behave using real-world flag data.
+→ [Read the blog] | [Enable it now]
+
+🧪 **Trunk-based Development Support**
+A modern DevOps workflow made easier with built-in feature flag control.
+→ [How to enable] | [Docs]
+
+---
+
+Here are the features to include:
+{feature_updates}
