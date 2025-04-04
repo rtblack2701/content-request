@@ -7,7 +7,9 @@ import typer
 
 load_dotenv()
 
-SHEET_ID = os.getenv("SHEET_ID")
+# Get environment variables
+SHEET_ID = os.getenv("SHEET_ID") or os.getenv("GOOGLE_SHEET_ID")
+CREDENTIALS_PATH = os.getenv("GOOGLE_CREDENTIALS_PATH", "credentials.json")
 
 def log_form_response():
     if not latest:
@@ -27,7 +29,7 @@ def log_form_response():
 scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
 
 # Authenticate with the service account
-creds = ServiceAccountCredentials.from_json_keyfile_name('credentials.json', scope)
+creds = ServiceAccountCredentials.from_json_keyfile_name(CREDENTIALS_PATH, scope)
 client = gspread.authorize(creds)
 
 # Open the sheet by ID

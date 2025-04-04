@@ -1,9 +1,9 @@
-You're writing a developer-facing release note entry for a new feature in Unleash.
+You're writing a developer-facing release note entry for a new feature in {company_name}.
 The style should follow this format:
 ---
 
-### [New Feature]: {title} ({version})
-→ [Docs](https://docs.getunleash.io) | [Tutorial](link TBD) | [Video](link TBD)
+### [New Feature]: {title}: Version {version}
+→ [Docs](https://developer.{site_url}) | [Tutorial](link TBD) | [Video](link TBD)
 
 Short one-line summary of what this feature does.
 

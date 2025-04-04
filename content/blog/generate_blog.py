@@ -7,6 +7,7 @@ from fetch_responses import latest
 
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
+COMPANY_NAME = os.getenv("COMPANY_NAME")
 
 def generate_blog():
     if not latest:
@@ -32,7 +33,7 @@ def generate_blog():
         description=latest["Feature description"],
         benefits=latest["Key benefits"],
         use_case=latest["Real-world use case"],
-        company_name=seo_data["company_name"],
+        company_name=COMPANY_NAME,
         trial_link=seo_data["trial_link"],
         docs_link=seo_data["docs_link"],
         community_link=seo_data["community_link"]

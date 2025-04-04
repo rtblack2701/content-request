@@ -5,6 +5,8 @@ from fetch_responses import latest
 
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+COMPANY_NAME = os.getenv("COMPANY_NAME")
+SITE_URL = os.getenv("SITE_URL")
 
 def generate_release_notes():
     if not latest:
@@ -24,6 +26,8 @@ def generate_release_notes():
     gotchas = latest.get("Known limitations or gotchas", "None specified.")
 
     prompt = template.format(
+        company_name=COMPANY_NAME,
+        site_url=SITE_URL,
         title=title,
         version=version,
         description=description,
