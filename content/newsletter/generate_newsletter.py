@@ -6,7 +6,7 @@ from fetch_responses import records
 
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-
+COMPANY_NAME = os.getenv("COMPANY_NAME")
 
 def generate_newsletter():
     entries = records
@@ -32,7 +32,10 @@ def generate_newsletter():
 
     combined_summary = "\n".join(feature_summaries)
 
-    prompt = template.format(feature_updates=combined_summary)
+    prompt = template.format(
+        feature_updates=combined_summary,
+        company_name=COMPANY_NAME
+    )
 
     try:
         response = client.chat.completions.create(

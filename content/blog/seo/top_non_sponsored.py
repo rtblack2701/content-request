@@ -9,6 +9,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 from content.blog.seo.top_non_sponsored_seo_analysis import analyze_webpage
+from dotenv import load_dotenv
+
+load_dotenv(override=True)
 
 def get_top_non_sponsored_article(keyword, feature_title):
     chrome_options = Options()
@@ -55,7 +58,7 @@ def get_top_non_sponsored_article(keyword, feature_title):
 
             if (
                 url and
-                'getunleash.io' not in url and
+                f"{os.getenv('SITE_URL')}" not in url and
                 not is_sponsored and
                 url not in seen_urls
             ):
@@ -89,10 +92,10 @@ def get_top_non_sponsored_article(keyword, feature_title):
                                 "keyword": keyword,
                                 "seo_headings": "\n".join([f"{h['tag'].upper()}: {h['text']}" for h in headings]),
                                 "title": feature_title,
-                                "company_name": "Unleash",
-                                "trial_link": "https://www.getunleash.io/start",
-                                "docs_link": "https://docs.getunleash.io",
-                                "community_link": "https://github.com/Unleash"
+                                "company_name": os.getenv("COMPANY_NAME"),
+                                "trial_link": f"https://{os.getenv("SITE_URL")}/trial",
+                                "docs_link": f"https://developer.{os.getenv("SITE_URL")}",
+                                "community_link": f"https://github.com/{os.getenv("COMPANY_NAME")}"
                             }, f, indent=2)
 
                         driver.quit()

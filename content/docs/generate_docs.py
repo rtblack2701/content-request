@@ -5,6 +5,8 @@ from fetch_responses import latest
 
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+COMPANY_NAME = os.getenv("COMPANY_NAME")
+SITE_URL = os.getenv("SITE_URL")
 
 def generate_docs():
     if not latest:
@@ -18,11 +20,12 @@ def generate_docs():
         template = f.read()
 
     prompt = template.format(
+        company_name=COMPANY_NAME,
+        site_url=SITE_URL,
         title=latest.get("Feature title", "(Untitled Feature)"),
         description=latest.get("Feature description", "No description provided."),
         use_case=latest.get("Real-world use case", ""),
         benefits=latest.get("Key benefits", ""),
-        enablement=latest.get("How to enable", ""),
         known_limitations=latest.get("Known limitations or gotchas", "None listed."),
         version=latest.get("Release version", "(Unreleased)"),
     )

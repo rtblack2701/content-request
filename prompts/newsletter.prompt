@@ -1,4 +1,4 @@
-You're writing a monthly newsletter for an audience of engineers, product managers, and existing Unleash customers.
+You're writing a monthly newsletter for an audience of engineers, product managers, and existing Harness customers.
 At the top, write a short, globally neutral intro paragraph that gives a friendly summary of the updates — avoid referencing specific seasons or holidays.
 
 The newsletter should be:
@@ -20,7 +20,7 @@ At the top, write a short intro paragraph that reflects the current month and gi
 Structure example:
 
 ---
-👋 Hey there! Here’s what we’ve been working on lately at Unleash — new features, smart improvements, and more.
+👋 Hey there! Here’s what we’ve been working on lately at {company_name} — new features, smart improvements, and more.
 
 ---
 

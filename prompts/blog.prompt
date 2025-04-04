@@ -11,7 +11,7 @@ Structure your blog using the following outline:
 2. **What is {title}?** – Define and explain the concept clearly.
 3. **Key Benefits** – Use these points to inform this section: {benefits}
 4. **Real-world Use Case** – Describe this example scenario: {use_case}
-5. **How {company_name} Supports This** – Explain how {company_name} offers value in this context.
+5. **Where to find {title} support** – Explain how {company_name} offers value in this context. Start with a line such as "At {company_name}, we understand the importance of {title} in {use_case}"
 6. **Call to Action** – Direct readers to:
    - Trial: {trial_link}
    - Docs: {docs_link}
