@@ -2,7 +2,7 @@ You're generating an internal sales engineering handover document for a new prod
 
 Use the provided structured data to create a consistent document format with the following sections:
 
-# SE {title} Handover
+# Sales Engineering Handover: {title}
 
 ## Feature Description
 {description}
