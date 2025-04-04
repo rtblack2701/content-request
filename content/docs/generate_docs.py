@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 from openai import OpenAI
+import json
 from fetch_responses import latest
 
 load_dotenv()
@@ -12,6 +13,14 @@ def generate_docs():
     if not latest:
         print("\u274c No form responses found.")
         return
+    
+    seo_data_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../seo_data.json"))
+    if not os.path.exists(seo_data_path) or os.stat(seo_data_path).st_size == 0:
+        print("\u274c seo_data.json is empty or missing.")
+        return
+
+    with open(seo_data_path) as f:
+        seo_data = json.load(f)
 
     prompt_path = os.path.abspath(
         os.path.join(os.path.dirname(__file__), "../../prompts/docs.prompt")
@@ -28,6 +37,7 @@ def generate_docs():
         benefits=latest.get("Key benefits", ""),
         known_limitations=latest.get("Known limitations or gotchas", "None listed."),
         version=latest.get("Release version", "(Unreleased)"),
+        docs_link=seo_data["docs_link"],
     )
 
     try:
