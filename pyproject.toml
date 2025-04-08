@@ -1,0 +1,39 @@
+[project]
+name = "contentgen"
+version = "0.1.0"
+description = "Generate product content (blogs, docs, announcements) from Google Form submissions"
+authors = [{ name = "Richard Black" }]
+readme = "README.md"
+license = "MIT"
+keywords = ["docs", "content", "automation", "openai"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "openai>=1.0.0",
+    "typer[all]>=0.9",
+    "gspread>=5.0.0",
+    "python-dotenv>=1.0.0",
+    "google-api-python-client>=2.0.0",
+    "google-auth>=2.0.0",
+    "google-auth-oauthlib>=1.0.0",
+    "beautifulsoup4>=4.12.0",
+    "requests>=2.31.0",
+    "selenium>=4.0.0",
+    "webdriver-manager>=3.8.0",
+]
+
+[project.optional-dependencies]
+dev = ["ruff", "black", "ipython"]
+
+[project.scripts]
+contentgen = "content_request.main:app"
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel", "build"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["content"]
