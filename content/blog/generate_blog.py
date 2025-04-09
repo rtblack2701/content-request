@@ -58,9 +58,12 @@ def generate_blog():
         print("\u274c OpenAI returned an empty response.")
         return
 
-    output_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../output/blog.md"))
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    # 📝 Save the blog
+    output_dir = os.getenv("OUTPUT_DIR", os.path.expanduser("~/Desktop/contentgen_output"))
+    os.makedirs(output_dir, exist_ok=True)
+
+    output_path = os.path.join(output_dir, "blog.md")
     with open(output_path, "w") as f:
         f.write(blog_text)
 
-    print("\u2705 Blog written to output/blog.md")
+    print(f"✅ Blog written to {output_path}")

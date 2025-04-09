@@ -58,13 +58,15 @@ def generate_se_handover():
         full_text = "Scenario not generated. Please add manually if needed."
         print(f"⚠️ OpenAI error: {e}")
 
-    # Write the handover doc
-    output_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../output/se_handover.md"))
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    # 📝 Save the SE Handover
+    output_dir = os.getenv("OUTPUT_DIR", os.path.expanduser("~/Desktop/contentgen_output"))
+    os.makedirs(output_dir, exist_ok=True)
+
+    output_path = os.path.join(output_dir, "se_handover.md")
     with open(output_path, "w") as f:
         f.write(full_text)
 
-    print("✅ SE Handover document written to output/se_handover.md")
+    print(f"✅ SE Handover written to {output_path}")
 
 # Optional run
 if __name__ == "__main__":

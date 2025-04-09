@@ -54,14 +54,15 @@ def generate_newsletter():
         print(f"❌ Error calling OpenAI: {e}")
         return
 
-    output_path = os.path.abspath(
-        os.path.join(os.path.dirname(__file__), "../../output/newsletter.md")
-    )
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    # 📝 Save the newletter
+    output_dir = os.getenv("OUTPUT_DIR", os.path.expanduser("~/Desktop/contentgen_output"))
+    os.makedirs(output_dir, exist_ok=True)
+
+    output_path = os.path.join(output_dir, "newsletter.md")
     with open(output_path, "w") as f:
         f.write(newsletter)
 
-    print("✅ Newsletter written to output/newsletter.md")
+    print(f"✅ Blog written to {output_path}")
 
 
 if __name__ == "__main__":

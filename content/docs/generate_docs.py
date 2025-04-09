@@ -57,15 +57,15 @@ def generate_docs():
         print(f"\u274c Error calling OpenAI: {e}")
         return
 
-    # Write to docs output file
-    output_path = os.path.abspath(
-        os.path.join(os.path.dirname(__file__), "../../output/docs.md")
-    )
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    # 📝 Save the docs
+    output_dir = os.getenv("OUTPUT_DIR", os.path.expanduser("~/Desktop/contentgen_output"))
+    os.makedirs(output_dir, exist_ok=True)
+
+    output_path = os.path.join(output_dir, "docs.md")
     with open(output_path, "w") as f:
         f.write(docs_md)
 
-    print("\u2705 Docs written to output/docs.md")
+    print(f"✅ Docs written to {output_path}")
 
 if __name__ == "__main__":
     generate_docs()

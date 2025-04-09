@@ -52,14 +52,15 @@ def generate_release_notes():
         print(f"❌ Error calling OpenAI: {e}")
         return
 
-    output_path = os.path.abspath(
-        os.path.join(os.path.dirname(__file__), "../../output/release_notes.md")
-    )
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    # 📝 Save the Release Notes
+    output_dir = os.getenv("OUTPUT_DIR", os.path.expanduser("~/Desktop/contentgen_output"))
+    os.makedirs(output_dir, exist_ok=True)
+
+    output_path = os.path.join(output_dir, "release_notes.md")
     with open(output_path, "w") as f:
         f.write(release_note)
 
-    print("✅ Release notes written to output/release_notes.md")
+    print(f"✅ Release notes written to {output_path}")
 
 if __name__ == "__main__":
     generate_release_notes()

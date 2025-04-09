@@ -60,12 +60,14 @@ def generate_announcement():
         return
 
     # 📝 Save the announcement
-    output_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../output/announcement.md"))
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    output_dir = os.getenv("OUTPUT_DIR", os.path.expanduser("~/Desktop/contentgen_output"))
+    os.makedirs(output_dir, exist_ok=True)
+
+    output_path = os.path.join(output_dir, "announcement.md")
     with open(output_path, "w") as f:
         f.write(announcement_text)
 
-    print("✅ Announcement written to output/announcement.md")
+    print(f"✅ Announcement written to {output_path}")
 
 # Optional local run
 if __name__ == "__main__":
