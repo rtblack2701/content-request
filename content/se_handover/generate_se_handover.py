@@ -4,7 +4,7 @@ from fetch_responses import latest
 from openai import OpenAI
 
 load_dotenv()
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 
 def generate_se_handover():
     if not latest:

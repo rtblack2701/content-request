@@ -5,9 +5,9 @@ import json
 from fetch_responses import latest
 
 load_dotenv()
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-COMPANY_NAME = os.getenv("COMPANY_NAME")
-SITE_URL = os.getenv("SITE_URL")
+client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+COMPANY_NAME = os.getenv('COMPANY_NAME')
+SITE_URL = os.getenv('SITE_URL')
 
 def generate_docs():
     if not latest:

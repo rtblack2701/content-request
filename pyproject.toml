@@ -17,6 +17,7 @@ dependencies = [
     "gspread>=5.0.0",
     "python-dotenv>=1.0.0",
     "google-api-python-client>=2.0.0",
+    "oauth2client>=4.1.3",
     "google-auth>=2.0.0",
     "google-auth-oauthlib>=1.0.0",
     "beautifulsoup4>=4.12.0",
@@ -29,7 +30,7 @@ dependencies = [
 dev = ["ruff", "black", "ipython"]
 
 [project.scripts]
-contentgen = "content_request.main:app"
+contentgen = "main:app"
 
 [build-system]
 requires = ["setuptools>=61.0", "wheel", "build"]

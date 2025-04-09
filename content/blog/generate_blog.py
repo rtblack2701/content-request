@@ -6,8 +6,8 @@ from dotenv import load_dotenv
 from fetch_responses import latest
 
 load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
-COMPANY_NAME = os.getenv("COMPANY_NAME")
+openai.api_key = os.getenv('OPENAI_API_KEY')
+COMPANY_NAME = os.getenv('COMPANY_NAME')
 
 def generate_blog():
     if not latest:

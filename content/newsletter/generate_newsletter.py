@@ -5,8 +5,8 @@ from openai import OpenAI
 from fetch_responses import records
 
 load_dotenv()
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-COMPANY_NAME = os.getenv("COMPANY_NAME")
+client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+COMPANY_NAME = os.getenv('COMPANY_NAME')
 
 def generate_newsletter():
     entries = records

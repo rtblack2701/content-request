@@ -3,24 +3,21 @@ FROM python:3.11-slim
 
 # Set working directory
 WORKDIR /app
+ENV PYTHONPATH=/app
 
-# Install pipenv or use pip + build tools
+# Install build tools
 RUN apt-get update && apt-get install -y curl gcc libffi-dev && rm -rf /var/lib/apt/lists/*
 
-# Copy and install project dependencies
-COPY pyproject.toml ./
-COPY content_request ./content_request
-COPY prompts ./prompts
-COPY output ./output
-COPY logs ./logs
+# Copy the whole project into the image
+COPY . .
 
-RUN pip install --upgrade pip build && \
+# Install Python dependencies
+RUN pip install --upgrade pip && \
     pip install .
 
-# Copy entrypoint script (if you have one, e.g. quickstart)
+# Entrypoint
 COPY docker-entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-# Default to showing help
-ENTRYPOINT ["contentgen"]
+ENTRYPOINT ["python", "main.py"]
 CMD ["--help"]

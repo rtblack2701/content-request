@@ -92,10 +92,10 @@ def get_top_non_sponsored_article(keyword, feature_title):
                                 "keyword": keyword,
                                 "seo_headings": "\n".join([f"{h['tag'].upper()}: {h['text']}" for h in headings]),
                                 "title": feature_title,
-                                "company_name": os.getenv("COMPANY_NAME"),
-                                "trial_link": f"https://{os.getenv("SITE_URL")}/trial",
-                                "docs_link": f"https://developer.{os.getenv("SITE_URL")}",
-                                "community_link": f"https://github.com/{os.getenv("COMPANY_NAME")}"
+                                "company_name": os.getenv('COMPANY_NAME'),
+                                "trial_link": f"https://{os.getenv('SITE_URL')}/trial",
+                                "docs_link": f"https://developer.{os.getenv('SITE_URL')}",
+                                "community_link": f"https://github.com/{os.getenv('COMPANY_NAME')}"
                             }, f, indent=2)
 
                         driver.quit()

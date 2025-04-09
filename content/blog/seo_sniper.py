@@ -16,10 +16,10 @@ def generate_seo_data(keyword: str, feature_title: str) -> bool:
         "source_url": url,
         "seo_headings": "\n".join([f"{h['tag'].upper()}: {h['text']}" for h in headings]),
         "word_count": word_count,
-        "company_name": os.getenv("COMPANY_NAME"),
-        "trial_link": f"https://{os.getenv("SITE_URL")}/trial",
-        "docs_link": f"https://developer.{os.getenv("SITE_URL")}",
-        "community_link": f"https://github.com/{os.getenv("COMPANY_NAME")}"
+        "company_name": os.getenv('COMPANY_NAME'),
+        "trial_link": f"https://{os.getenv('SITE_URL')}/trial",
+        "docs_link": f"https://developer.{os.getenv('SITE_URL')}",
+        "community_link": f"https://github.com/{os.getenv('COMPANY_NAME')}"
     }
 
     log_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../seo_sniping.log"))
