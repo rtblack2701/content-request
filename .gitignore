@@ -178,3 +178,7 @@ output/
 
 # JSON files
 *.json
+
+# Personal Makefile for dev utilities
+Makefile.local
+docker-login.sh
