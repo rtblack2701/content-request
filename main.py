@@ -38,7 +38,6 @@ def fetch():
         typer.echo("❌ No form responses found.")
     else:
         path = log_form_response()
-        typer.echo(f"✅ Form response logged to: {path}")
 
 @app.command()
 def blog():
@@ -48,7 +47,6 @@ def blog():
         raise typer.Exit()
 
     path = log_form_response()
-    typer.echo(f"✅ Form response logged to: {path}")
     typer.echo("\n--- Sniping SEO structure based on feature title ---")
 
     keyword = latest.get("Feature title")
@@ -72,8 +70,7 @@ def announcement():
         raise typer.Exit()
 
     path = log_form_response()
-    typer.echo(f"✅ Form response logged to: {path}")
-    typer.echo("✅ Generating feature announcement...")
+    typer.echo("\n--- Generating feature announcement ---")
     generate_announcement()
 
 @app.command()
@@ -84,26 +81,25 @@ def handover():
         raise typer.Exit()
 
     path = log_form_response()
-    typer.echo(f"✅ Form response logged to: {path}")
-    typer.echo("✅ Generating SE Handover doc...")
+    typer.echo("\n--- Generating SE handover ---")
     generate_se_handover()
 
 @app.command()
 def newsletter():
     "Generates a newsletter with all Google Form submissions not yet used."
-    typer.echo("✅ Generating newsletter...")
+    typer.echo("\n--- Generating newsletter ---")
     generate_newsletter()
 
 @app.command()
 def docs():
     "Generates technical documentation from the latest Google Form entry."
-    typer.echo("✅ Generating technical documentation...")
+    typer.echo("\n--- Generating technical documentation ---")
     generate_docs()
 
 @app.command()
 def release_notes():
     "Generates release notes from the latest Google Form entry."
-    typer.echo("✅ Generating release notes...")
+    typer.echo("\n--- Generating release ntoes ---")
     generate_release_notes()
 
 @app.command()
