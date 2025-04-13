@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 from openai import OpenAI
 import json
-from fetch_responses import latest
+from core.fetch_responses import latest
 
 load_dotenv()
 client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
@@ -23,7 +23,7 @@ def generate_docs():
         seo_data = json.load(f)
 
     prompt_path = os.path.abspath(
-        os.path.join(os.path.dirname(__file__), "../../prompts/docs.prompt")
+        os.path.join(os.path.dirname(__file__), "../templates/docs.prompt")
     )
     with open(prompt_path) as f:
         template = f.read()

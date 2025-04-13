@@ -8,7 +8,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
-from content.blog.seo.top_non_sponsored_seo_analysis import analyze_webpage
+from core.seo.top_non_sponsored_seo_analysis import analyze_webpage
 from dotenv import load_dotenv
 
 load_dotenv(override=True)

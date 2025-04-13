@@ -3,7 +3,7 @@ import os
 import openai
 import json
 from dotenv import load_dotenv
-from fetch_responses import latest
+from core.fetch_responses import latest
 
 load_dotenv()
 openai.api_key = os.getenv('OPENAI_API_KEY')
@@ -22,7 +22,7 @@ def generate_blog():
     with open(seo_data_path) as f:
         seo_data = json.load(f)
 
-    prompt_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../prompts/blog.prompt"))
+    prompt_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../templates/blog.prompt"))
     with open(prompt_path) as f:
         template = f.read()
 

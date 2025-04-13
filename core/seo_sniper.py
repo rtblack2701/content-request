@@ -1,6 +1,6 @@
 import json
 import os
-from content.blog.seo.top_non_sponsored import get_top_non_sponsored_article
+from core.seo.top_non_sponsored import get_top_non_sponsored_article
 
 def generate_seo_data(keyword: str, feature_title: str) -> bool:
     print(f"🔍 Sniping SEO structure for: {keyword}")
