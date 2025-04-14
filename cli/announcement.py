@@ -1,7 +1,7 @@
 import os
 import json
 from dotenv import load_dotenv
-from fetch_responses import latest
+from core.fetch_responses import latest
 from openai import OpenAI
 
 load_dotenv()
@@ -13,7 +13,7 @@ def generate_announcement():
         print("❌ No form responses found.")
         return
 
-    prompt_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../prompts/announcement.prompt"))
+    prompt_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../templates/announcement.prompt"))
     with open(prompt_path) as f:
         template = f.read()
 

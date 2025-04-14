@@ -1,14 +1,14 @@
 import os
 import typer
 import datetime
-from fetch_responses import latest
-from content.blog.seo_sniper import generate_seo_data
-from content.blog.generate_blog import generate_blog
-from content.announcement.generate_announcement import generate_announcement
-from content.se_handover.generate_se_handover import generate_se_handover
-from content.newsletter.generate_newsletter import generate_newsletter
-from content.docs.generate_docs import generate_docs
-from content.release_notes.generate_release_notes import generate_release_notes
+from core.fetch_responses import latest
+from core.seo_sniper import generate_seo_data
+from cli.blog import generate_blog
+from cli.announcement import generate_announcement
+from cli.handover import generate_se_handover
+from cli.newsletter import generate_newsletter
+from cli.docs import generate_docs
+from cli.release_notes import generate_release_notes
 
 app = typer.Typer(help="Feature Content Generator CLI")
 

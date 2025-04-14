@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from fetch_responses import latest
+from core.fetch_responses import latest
 from openai import OpenAI
 
 load_dotenv()
@@ -12,7 +12,7 @@ def generate_se_handover():
         return
 
     # Load the SE handover template
-    prompt_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../prompts/se_handover.prompt"))
+    prompt_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../templates/se_handover.prompt"))
     with open(prompt_path) as f:
         template = f.read()
 

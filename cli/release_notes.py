@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 from openai import OpenAI
-from fetch_responses import latest
+from core.fetch_responses import latest
 
 load_dotenv()
 client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
@@ -14,7 +14,7 @@ def generate_release_notes():
         return
 
     prompt_path = os.path.abspath(
-        os.path.join(os.path.dirname(__file__), "../../prompts/release_notes.prompt")
+        os.path.join(os.path.dirname(__file__), "../templates/release_notes.prompt")
     )
     with open(prompt_path) as f:
         template = f.read()

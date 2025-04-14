@@ -2,7 +2,7 @@ import os
 import json
 from dotenv import load_dotenv
 from openai import OpenAI
-from fetch_responses import records
+from core.fetch_responses import records
 
 load_dotenv()
 client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
@@ -15,7 +15,7 @@ def generate_newsletter():
         return
 
     prompt_path = os.path.abspath(
-        os.path.join(os.path.dirname(__file__), "../../prompts/newsletter.prompt")
+        os.path.join(os.path.dirname(__file__), "../templates/newsletter.prompt")
     )
     with open(prompt_path) as f:
         template = f.read()
